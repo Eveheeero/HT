@@ -1,0 +1,34 @@
+[package]
+name = "ht"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bevy-tokio-tasks = "0.10.2"
+bevy_asset_loader = { version = "0.16.1", features = ["2d", "3d", "progress_tracking", "standard_dynamic_assets"] }
+bevy_egui = "0.20.3"
+bevy_hanabi = "0.6.2"
+bevy_pixels = "0.10.0"
+bevy_rapier2d = { version = "0.21.0", features = ["simd-stable", "serde", "parallel"] }
+bevy_save = "0.8.1"
+bevy_svg = "0.10.1"
+bevy_tileset = "0.7.0"
+fastrand = "2.0.0"
+half = { version = "2.2.1", features = ["serde", "zerocopy", "num-traits", "bytemuck"] }
+intmap = { version = "2.0.0", features = ["serde"] }
+iovec = "0.1.4"
+itoa = "1.0.6"
+libloading = "0.8.0"
+num-bigint = { version = "0.4.3", features = ["rand", "serde", "quickcheck"] }
+num-traits = "0.2.15"
+num_cpus = "1.15.0"
+parking_lot = { version = "0.12.1", features = ["serde", "arc_lock", "deadlock_detection"] }
+ryu = "1.0.13"
+serde = "1.0.164"
+tokio = "1.28.2"
+uuid = { version = "1.3.3", features = ["fast-rng", "v4"] }
+
+
+[dependencies.bevy]
+version = "0.10.1"
+features = ["dynamic_linking", "detailed_trace", "bevy_dynamic_plugin"]
