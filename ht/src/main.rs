@@ -15,11 +15,8 @@ fn main() {
                     .unwrap()
             }),
             ..bevy_tokio_tasks::TokioTasksPlugin::default()
-        });
-
-    unsafe {
-        app.load_plugin("ht_core");
-    }
+        })
+        .add_plugin(ht_core::SamplePlugin);
 
     app.add_startup_system(add_people).run();
 }

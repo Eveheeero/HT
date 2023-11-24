@@ -33,3 +33,7 @@ uuid = { version = "1.3.3", features = ["fast-rng", "v4"] }
 [dependencies.bevy]
 version = "*"
 features = ["dynamic_linking", "detailed_trace", "bevy_dynamic_plugin"]
+
+[dependencies.ht-core]
+version = "0.1.0"
+path = "../ht-core"
