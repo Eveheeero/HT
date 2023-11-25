@@ -1,6 +1,7 @@
 mod plugin;
 mod prelude;
 
+use crate::prelude::*;
 use bevy::prelude::*;
 
 fn main() {
@@ -8,9 +9,9 @@ fn main() {
     app.add_plugins(DefaultPlugins)
         .add_plugin(bevy_tokio_tasks::TokioTasksPlugin {
             make_runtime: Box::new(|| {
-                ht_core::tokio::runtime::Builder::new_multi_thread()
+                tokio::runtime::Builder::new_multi_thread()
                     .enable_all()
-                    .worker_threads(ht_core::num_cpus::get())
+                    .worker_threads(num_cpus::get())
                     .build()
                     .unwrap()
             }),
