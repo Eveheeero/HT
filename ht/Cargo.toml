@@ -3,12 +3,8 @@ name = "ht"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
-bevy-tokio-tasks = "*"
-
-
 [dependencies.bevy]
-version = "*"
+version = "0.12.0"
 features = ["dynamic_linking", "detailed_trace"]
 
 [dependencies.ht-core]

@@ -1,34 +1,27 @@
 mod plugin;
 mod prelude;
 
-use crate::prelude::*;
 use bevy::prelude::*;
 
 fn main() {
     let mut app = App::new();
-    app.add_plugins(DefaultPlugins)
-        .add_plugin(bevy_tokio_tasks::TokioTasksPlugin {
-            make_runtime: Box::new(|| {
-                tokio::runtime::Builder::new_multi_thread()
-                    .enable_all()
-                    .worker_threads(num_cpus::get())
-                    .build()
-                    .unwrap()
-            }),
-            ..bevy_tokio_tasks::TokioTasksPlugin::default()
-        });
+    app.add_plugins(DefaultPlugins);
+    app.add_plugins((
+        plugin::TokioPlugin,
+        plugin::CameraPlugin,
+        plugin::SpawnPeople,
+    ));
 
     app.insert_resource(ht_core::World::default());
 
-    app.add_startup_system(add_people).run();
+    app.add_systems(Startup, add_quad_sample).run();
 }
 
-fn add_people(
+fn add_quad_sample(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<ColorMaterial>>,
 ) {
-    commands.spawn(Camera2dBundle::default());
     commands.spawn(ColorMesh2dBundle {
         mesh: meshes
             .add(Mesh::from(shape::Quad {
