@@ -4,9 +4,9 @@ use intmap::IntMap;
 
 /// 게임 세상 전부
 #[derive(Clone, Default, Debug, Resource)]
-pub struct World(IntMap<Object>);
+pub struct HtWorld(IntMap<Object>);
 
-impl World {
+impl HtWorld {
     /// 객체를 추가합니다.
     ///
     /// 아이디가 0이거나 None일경우, 임시객체로 간주하고 새로운 아이디를 부여합니다.

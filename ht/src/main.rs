@@ -1,7 +1,7 @@
 mod plugin;
 mod prelude;
 
-use bevy::prelude::*;
+use crate::prelude::*;
 
 fn main() {
     let mut app = App::new();
@@ -12,7 +12,7 @@ fn main() {
         plugin::SpawnPeople,
     ));
 
-    app.insert_resource(ht_core::World::default());
+    app.insert_resource(HtWorld::default());
 
     app.add_systems(Startup, add_quad_sample).run();
 }
