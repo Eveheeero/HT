@@ -18,6 +18,8 @@ fn main() {
             ..bevy_tokio_tasks::TokioTasksPlugin::default()
         });
 
+    app.insert_resource(ht_core::World::default());
+
     app.add_startup_system(add_people).run();
 }
 

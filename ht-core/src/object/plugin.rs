@@ -1,9 +1,9 @@
-use super::DataType;
+use super::Data;
 use intmap::IntMap;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, Serialize, Deserialize)]
-pub struct PluginData(IntMap<DataType>);
+pub struct PluginData(IntMap<Data>);
 
 #[repr(u64)]
 #[derive(Clone, Copy, Serialize, Deserialize, PartialEq, PartialOrd, Ord, Eq)]
@@ -17,19 +17,19 @@ pub enum PluginDataCode {
 
 impl PluginData {
     #[inline(always)]
-    pub fn insert(&mut self, key: PluginDataCode, value: DataType) -> Option<DataType> {
+    pub fn insert(&mut self, key: PluginDataCode, value: Data) -> Option<Data> {
         self.0.insert(key as u64, value)
     }
     #[inline(always)]
-    pub fn get(&self, key: PluginDataCode) -> Option<&DataType> {
+    pub fn get(&self, key: PluginDataCode) -> Option<&Data> {
         self.0.get(key as u64)
     }
     #[inline(always)]
-    pub fn get_mut(&mut self, key: PluginDataCode) -> Option<&mut DataType> {
+    pub fn get_mut(&mut self, key: PluginDataCode) -> Option<&mut Data> {
         self.0.get_mut(key as u64)
     }
     #[inline(always)]
-    pub fn remove(&mut self, key: PluginDataCode) -> Option<DataType> {
+    pub fn remove(&mut self, key: PluginDataCode) -> Option<Data> {
         self.0.remove(key as u64)
     }
 }
