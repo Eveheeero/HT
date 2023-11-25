@@ -3,5 +3,7 @@ name = "ht-core"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
-bevy = { version = "*" }
+
+[dependencies.bevy]
+version = "*"
+features = ["dynamic_linking", "detailed_trace"]
