@@ -10,8 +10,9 @@ use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
 use uuid::Uuid;
 
-/// Inner data type
-#[derive(Clone, Serialize, Deserialize)]
+/// 내부 데이터타입
+/// HP일경우 match u8, u16등 사용, 그 외의경우는 unimplement로 처리
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum DataType {
     None,
     String(String),
@@ -37,7 +38,7 @@ pub enum DataType {
     Uuid(Uuid),
 }
 
-#[derive(Clone, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum MapData {
     Dynamic(HashMap<DataTypeWithoutCollection, DataType>),
     String(HashMap<String, DataType>),
@@ -57,7 +58,7 @@ pub enum MapData {
     Uuid(HashMap<Uuid, DataType>),
 }
 
-#[derive(Clone, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum SetData {
     Dynamic(HashSet<DataTypeWithoutCollection>),
     String(HashSet<String>),
@@ -78,7 +79,7 @@ pub enum SetData {
 }
 
 /// Data Type for key for Map and Set
-#[derive(Clone, Serialize, Deserialize, Hash, Eq, PartialEq, PartialOrd, Ord)]
+#[derive(Clone, Debug, Serialize, Deserialize, Hash, Eq, PartialEq, PartialOrd, Ord)]
 pub enum DataTypeWithoutCollection {
     None,
     String(String),
@@ -112,7 +113,14 @@ pub enum DataTypeWithoutCollection {
 ///   /* Try again with new value */
 /// }
 /// ```
-#[derive(Clone, Serialize, Deserialize)]
+///
+/// ### TODO
+/// 추후 개발시, 모든 operation에 대해 필요한 datacell을 건내준 다음
+/// 처음 operate를 수행하며 modified number를 기록하고
+/// 이후 타이밍이 되었을때 modified number를 비교하여
+/// 수정되지 않았을경우 그대로 적용하고
+/// 수정되었을경우 다시 operation을 수행하도록 해야합니다.
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct DataCell(DataType, u64);
 
 impl DataCell {

@@ -1,9 +1,4 @@
-use bevy::prelude::*;
+pub mod object;
 
-pub struct SamplePlugin;
-
-impl Plugin for SamplePlugin {
-    fn build(&self, app: &mut App) {
-        println!("Hello!");
-    }
-}
+pub use num_cpus;
+pub use tokio;

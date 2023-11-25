@@ -1,5 +1,5 @@
-pub mod object;
-pub mod plugin;
+mod plugin;
+mod prelude;
 
 use bevy::prelude::*;
 
@@ -8,15 +8,14 @@ fn main() {
     app.add_plugins(DefaultPlugins)
         .add_plugin(bevy_tokio_tasks::TokioTasksPlugin {
             make_runtime: Box::new(|| {
-                tokio::runtime::Builder::new_multi_thread()
+                ht_core::tokio::runtime::Builder::new_multi_thread()
                     .enable_all()
-                    .worker_threads(num_cpus::get())
+                    .worker_threads(ht_core::num_cpus::get())
                     .build()
                     .unwrap()
             }),
             ..bevy_tokio_tasks::TokioTasksPlugin::default()
-        })
-        .add_plugin(ht_core::SamplePlugin);
+        });
 
     app.add_startup_system(add_people).run();
 }
